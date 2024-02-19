@@ -31,7 +31,7 @@ spec:
           - containerPort: 9090
         env:
           - name: MONGO
-            value: mongodb+srv://joaquin:lajori848@codercluster.hkzyxhs.mongodb.net/ecommerce?retryWrites=true&w=majority
+            value: mongodb+srv://CoderUser:1234@ecommerce.5odsxhx.mongodb.net/?retryWrites=true&w=majority
           - name: JWT_KEY
             value: "SecretCoderKey"
           - name: JWT_RESET_PASSWORD_KEY
