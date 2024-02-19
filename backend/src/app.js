@@ -43,7 +43,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/static', express.static(__dirname+'/public'))
 app.use(cookieParser())
 app.use(cors({
-    origin: ['https://hardfrontend.onrender.com', 'https://proyecto-final-coderhouse-six.vercel.app/', 'http://localhost:5173', 'http://localhost:4173'],
+    origin: ['https://hardfrontend.onrender.com', 'http://localhost:5173/', 'http://localhost:5173', 'http://localhost:4173'],
     credentials: true
 }))
 
