@@ -1,11 +1,11 @@
-import RouterClass from './RouterClass'
-import { getById, create, addProduct, update, updateQuantity, deleteProduct, deleteAllProducts, generatePurchase } from '../controllers/carts.controller'
+const RouterClass = require('./RouterClass')
+const cartController = require('../controllers/carts.controller')
 
 class CartRouter extends RouterClass {
     init(){
         this.get('/:cid', ['PUBLIC'], async (req, res) => {
             try{
-                const payload = await getById(req, res)
+                const payload = await cartController.getById(req, res)
                 res.sendSuccess(payload)
             }catch(error){
                 res.sendServerError(error.message)
@@ -14,7 +14,7 @@ class CartRouter extends RouterClass {
 
         this.post('/', ['PUBLIC'], async (req, res) => {
             try{
-                res.sendSuccess(await create(req, res))
+                res.sendSuccess(await cartController.create(req, res))
             }catch(error){
                 res.sendServerError(error.message)
             }
@@ -22,7 +22,7 @@ class CartRouter extends RouterClass {
 
         this.post('/:cid/products/:pid', ['USER', 'PREMIUM'], async (req, res) => {
             try{
-                res.sendSuccess(await addProduct(req, res))
+                res.sendSuccess(await cartController.addProduct(req, res))
             }catch(error){
                 res.sendServerError(error.message)
             }
@@ -30,7 +30,7 @@ class CartRouter extends RouterClass {
 
         this.put('/:cid', ['PUBLIC'], async (req, res) => {
             try{
-                res.sendSuccess(await update(req, res))
+                res.sendSuccess(await cartController.update(req, res))
             }catch(error){
                 res.sendServerError(error.message)
             }
@@ -38,7 +38,7 @@ class CartRouter extends RouterClass {
 
         this.put('/:cid/products/:pid', ['PUBLIC'], async (req, res) => {
             try{
-                res.sendSuccess(await updateQuantity(req, res))
+                res.sendSuccess(await cartController.updateQuantity(req, res))
             }catch(error){
                 res.sendServerError(error.message)
             }
@@ -46,7 +46,7 @@ class CartRouter extends RouterClass {
 
         this.delete('/:cid/products/:pid', ['PUBLIC'], async (req, res) => {
             try{
-                res.sendSuccess(await deleteProduct(req, res))
+                res.sendSuccess(await cartController.deleteProduct(req, res))
             }catch(error){
                 res.sendServerError(error.message)
             }
@@ -55,7 +55,7 @@ class CartRouter extends RouterClass {
         
         this.delete('/:cid', ['PUBLIC'], async (req, res) => {
             try{
-                res.sendSuccess(await deleteAllProducts(req, res))
+                res.sendSuccess(await cartController.deleteAllProducts(req, res))
             }catch(error){
                 res.sendServerError(error.message)
             }
@@ -63,7 +63,7 @@ class CartRouter extends RouterClass {
 
         this.get('/:cid/purchase', ['PUBLIC'], async (req, res) => {
             try{
-                res.sendSuccess(await generatePurchase(req, res))
+                res.sendSuccess(await cartController.generatePurchase(req, res))
             }catch(error){
                 res.sendServerError(error.message)
             }
@@ -71,4 +71,4 @@ class CartRouter extends RouterClass {
     }
 }
 
-export default CartRouter;
+module.exports = CartRouter;
